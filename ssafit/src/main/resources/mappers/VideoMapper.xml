@@ -2,11 +2,18 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.ssafy.ssafit.model.dao.UserDao">
 
-  	<select id="selectUser" resultType="user">
-  		SELECT id, nickname, introduce
-		FROM user
-		WHERE id = #{id}
-  	</select>
-  </mapper>
+<mapper namespace="com.ssafy.ssafit.model.dao.VideoDao">
+
+	<select id="selectList" resultType="video">
+		SELECT no, title, part, channel_name channelName, url, view_cnt viewCnt
+		FROM video
+	</select>
+
+	<select id="selectOne" resultType="video">
+		SELECT no, title, part, channel_name channelName, url, view_cnt viewCnt
+		FROM video
+		WHERE no = #{no};
+	</select>
+	
+</mapper>

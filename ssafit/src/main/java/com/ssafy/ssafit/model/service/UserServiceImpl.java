@@ -17,4 +17,14 @@ public class UserServiceImpl implements UserService{
 		return userDao.selectUser(id); 
 	}
 
+	@Override
+	public void insertJjim(User user) {
+		userDao.insertJjim(user);
+	}
+
+	@Override
+	public void deleteJjim(User user) {
+		userDao.deleteJjim(user);
+	}
+
 }

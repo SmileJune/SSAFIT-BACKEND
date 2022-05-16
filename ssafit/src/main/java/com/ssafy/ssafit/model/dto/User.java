@@ -5,6 +5,7 @@ public class User {
 	private String password;
 	private String nickname;
 	private String introduce;
+	private int videoNo;
 	public String getId() {
 		return id;
 	}
@@ -29,6 +30,10 @@ public class User {
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
 	}
-	
-	
+	public int getVideoNo() {
+		return videoNo;
+	}
+	public void setVideoNo(int videoNo) {
+		this.videoNo = videoNo;
+	}
 }
