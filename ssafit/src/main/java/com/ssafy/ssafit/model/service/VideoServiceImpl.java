@@ -15,25 +15,6 @@ public class VideoServiceImpl implements VideoService{
 	private VideoDao VideoDao;
 
 	@Override
-	public void updateCnt(int id) {
-		Video video = VideoDao.selectOne(id);
-		video.setViewCnt(video.getViewCnt() + 1);
-		VideoDao.updateBoard(video);
-		
-	}
-
-	@Override
-	public Video getVideoById(int id) {
-		return VideoDao.selectOne(id);
-	}
-
-	@Override
-	public Video readVideo(int id) {
-		this.updateCnt(id);
-		return VideoDao.selectOne(id);
-	}
-
-	@Override
 	public List<Video> getVideoList() {
 		return VideoDao.selectList();
 	}

@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.ssafit.model.dto.Video;
-import com.ssafy.ssafit.model.service.VideoService;
+import com.ssafy.ssafit.model.service.VideoServiceImpl;
 
 @RestController
 @RequestMapping("/api")
 public class ApiVideoController {
 	
 	@Autowired
-	private VideoService videoService;
+	private VideoServiceImpl videoService;
 
 	
 	@GetMapping("video/list")
