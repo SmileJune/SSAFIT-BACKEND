@@ -18,4 +18,9 @@ public class VideoServiceImpl implements VideoService{
 	public List<Video> getVideoList() {
 		return VideoDao.selectList();
 	}
+
+	@Override
+	public Video getVideo(int no) {
+		return VideoDao.selectOne(no);
+	}
 }
