@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.ssafit.model.dao.FollowDao">
+
+	<select id="getFollowing" resultType="user">
+		select u.id, u.nickname, u.introduce
+		from user u
+		inner join (SELECT `to`
+					FROM follow
+					WHERE `from` = #{id}) f
+		ON u.id = f.to
+	</select>
+	
+	<select id="getFollower" resultType="user">
+		SELECT u.id, u.nickname, u.introduce
+		FROM user u
+		INNER JOIN (SELECT `from`
+					FROM follow
+					WHERE `to` = #{id}) f
+		ON u.id = f.from
+	</select>
+	
+	<insert id="insertFollow" parameterType="follow">
+		insert into follow
+		values (#{from}, #{to})
+	</insert>
+</mapper>
