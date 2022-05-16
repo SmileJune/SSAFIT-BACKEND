@@ -10,4 +10,6 @@ public interface UserService {
 	void insertJjim(User user);
 	void deleteJjim(User user);
 	List<Video> listJjim(String id);
+	List<User> getFollower(String id);
+	List<User> getFollowing(String id);
 }

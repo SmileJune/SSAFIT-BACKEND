@@ -39,4 +39,13 @@ public class ApiUserController {
 	public List<Video> listJjim(@PathVariable String id){
 		return userService.listJjim(id);
 	}
+	
+	@GetMapping("follower/{id}")
+	public List<User> listFollower(@PathVariable String id){
+		return userService.getFollower(id);
+	}
+	@GetMapping("following/{id}")
+	public List<User> listFollowing(@PathVariable String id){
+		return userService.getFollowing(id);
+	}
 }
