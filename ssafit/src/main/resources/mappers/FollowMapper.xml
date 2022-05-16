@@ -11,7 +11,7 @@
 		inner join (SELECT `to`
 					FROM follow
 					WHERE `from` = #{id}) f
-		ON u.id = f.to;
+		ON u.id = f.to
 	</select>
 	
 	<select id="getFollower" resultType="user">
@@ -20,7 +20,11 @@
 		INNER JOIN (SELECT `from`
 					FROM follow
 					WHERE `to` = #{id}) f
-		ON u.id = f.from;
+		ON u.id = f.from
 	</select>
 	
+	<insert id="insertFollow" parameterType="follow">
+		insert into follow
+		values (#{from}, #{to})
+	</insert>
 </mapper>

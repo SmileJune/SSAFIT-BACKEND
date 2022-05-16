@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.ssafit.model.dao.FollowDao;
 import com.ssafy.ssafit.model.dao.UserDao;
+import com.ssafy.ssafit.model.dto.Follow;
 import com.ssafy.ssafit.model.dto.User;
 import com.ssafy.ssafit.model.dto.Video;
 
@@ -46,6 +47,12 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<User> getFollowing(String id) {
 		return followDao.getFollowing(id);
+	}
+
+	@Override
+	public void insertFollow(Follow follow) {
+		followDao.insertFollow(follow);
+		
 	}
 
 }
