@@ -6,5 +6,5 @@ import com.ssafy.ssafit.model.dto.Review;
 
 public interface ReviewService {
 	List<Review> getReviewListByVideoNo(int videoNo);
-	
+	void createReview(Review review);
 }

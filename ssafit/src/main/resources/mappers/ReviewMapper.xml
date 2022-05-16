@@ -4,9 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssafy.ssafit.model.dao.ReviewDao">
-	<select id="selectReviewByVideoNo" resultType="Review">
+	<select id="selectReviewByVideoNo" resultType="review">
 		select no, video_no videoNo, user_id userId, title, content, date
 		from review
 		where video_no = #{videoNo};
 	</select>
+	
+	<insert id="insertReview" parameterType="review">
+		INSERT into review (video_no, user_id, title, content, date)
+		VALUES (#{videoNo}, #{userId}, #{title}, #{content}, now());
+	</insert>
 </mapper>

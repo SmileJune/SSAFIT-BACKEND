@@ -23,4 +23,9 @@ public class ApiReviewController {
 	public List<Review> reviewList(@PathVariable int videoNo) {
 		return reviewService.getReviewListByVideoNo(videoNo);
 	}
+
+	@PostMapping("review/write")
+	public void writeReview(Review review) {
+		reviewService.createReview(review);
+	}
 }

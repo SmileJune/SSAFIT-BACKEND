@@ -19,4 +19,8 @@ public class ReviewServiceImpl implements ReviewService{
 		return reviewDao.selectReviewByVideoNo(videoNo);
 	}
 
+	@Override
+	public void createReview(Review review) {
+		reviewDao.insertReview(review);
+	}
 }

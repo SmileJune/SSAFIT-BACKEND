@@ -6,4 +6,5 @@ import com.ssafy.ssafit.model.dto.Review;
 
 public interface ReviewDao {
 	List<Review> selectReviewByVideoNo(int videoNo);
+	void insertReview(Review review);
 }
