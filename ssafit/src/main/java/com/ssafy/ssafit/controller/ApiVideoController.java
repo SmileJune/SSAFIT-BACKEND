@@ -31,9 +31,9 @@ public class ApiVideoController {
 		return videoService.getVideo(id);
 	}
 	
-	@GetMapping("video/{part}")
-	public List<Video> listByPart(@PathVariable String part){
-		return videoService.getVideoListByPart(part);
+	@GetMapping("video/part/{partNo}")
+	public List<Video> listByPart(@PathVariable int partNo){
+		return videoService.getVideoListByPart(partNo);
 	}
 
 }

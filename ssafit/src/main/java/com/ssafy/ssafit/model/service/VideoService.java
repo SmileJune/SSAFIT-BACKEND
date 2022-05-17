@@ -7,5 +7,5 @@ import com.ssafy.ssafit.model.dto.Video;
 public interface VideoService {
 	Video getVideo(int no);
 	List<Video> getVideoList();
-	List<Video> getVideoListByPart(String part);
+	List<Video> getVideoListByPart(int partNo);
 }
