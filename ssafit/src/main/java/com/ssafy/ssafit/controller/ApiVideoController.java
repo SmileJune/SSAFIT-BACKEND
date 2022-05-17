@@ -30,5 +30,10 @@ public class ApiVideoController {
 	public Video listOne(@PathVariable int id) {
 		return videoService.getVideo(id);
 	}
+	
+	@GetMapping("video/part/{partNo}")
+	public List<Video> listByPart(@PathVariable int partNo){
+		return videoService.getVideoListByPart(partNo);
+	}
 
 }

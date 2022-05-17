@@ -16,6 +16,12 @@
 		WHERE no = #{no};
 	</select>
 	
-	
+	<select id="selectListByPart" resultType="video">
+		SELECT no, title, part, channel_name channelName, url, view_cnt viewCnt
+		FROM video
+		WHERE part = (select part
+						from part
+						where no = #{partNo});
+	</select>
 	
 </mapper>
