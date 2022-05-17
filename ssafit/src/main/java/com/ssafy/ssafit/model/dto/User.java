@@ -6,6 +6,7 @@ public class User {
 	private String nickname;
 	private String introduce;
 	private int videoNo;
+	
 	public String getId() {
 		return id;
 	}
