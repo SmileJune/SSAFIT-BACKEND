@@ -31,22 +31,7 @@ public class UserServiceImpl implements UserService {
 		}
 		return true;
 	}
-
-	@Override
-	public void insertJjim(User user) {
-		userDao.insertJjim(user);
-	}
-
-	@Override
-	public void deleteJjim(User user) {
-		userDao.deleteJjim(user);
-	}
-
-	@Override
-	public List<Video> listJjim(String id) {
-		return userDao.listJjim(id);
-	}
-
+	
 	@Override
 	public List<User> getFollower(String id) {
 		return followDao.getFollower(id);

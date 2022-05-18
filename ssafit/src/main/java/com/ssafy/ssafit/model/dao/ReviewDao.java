@@ -1,10 +1,9 @@
 package com.ssafy.ssafit.model.dao;
 
-import java.util.List;
-
 import com.ssafy.ssafit.model.dto.Review;
+import com.ssafy.ssafit.model.dto.Routine;
 
 public interface ReviewDao {
-	List<Review> selectReviewByVideoNo(int videoNo);
 	void insertReview(Review review);
+	void insertRoutine(Routine routine);
 }

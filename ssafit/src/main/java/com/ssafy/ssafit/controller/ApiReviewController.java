@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,14 +19,9 @@ public class ApiReviewController {
 
 	@Autowired
 	private ReviewServiceImpl reviewService;
-
-	@GetMapping("review/{videoNo}")
-	public List<Review> reviewList(@PathVariable int videoNo) {
-		return reviewService.getReviewListByVideoNo(videoNo);
-	}
-
+	
 	@PostMapping("review/write")
-	public void writeReview(Review review) {
+	public void writeReview(@RequestBody Review review) {
 		reviewService.createReview(review);
 	}
 }

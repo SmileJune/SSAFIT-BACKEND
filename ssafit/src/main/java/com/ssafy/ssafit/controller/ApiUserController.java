@@ -63,21 +63,6 @@ public class ApiUserController {
 		return userService.getUser(id);
 	}
 
-	@PostMapping("jjim")
-	public void jjim(User user) {
-		userService.insertJjim(user);
-	}
-
-	@DeleteMapping("jjim/delete")
-	public void deleteJjim(User user) {
-		userService.deleteJjim(user);
-	}
-
-	@GetMapping("jjim/list/{id}")
-	public List<Video> listJjim(@PathVariable String id) {
-		return userService.listJjim(id);
-	}
-
 	@GetMapping("follower/{id}")
 	public List<User> listFollower(@PathVariable String id) {
 		return userService.getFollower(id);

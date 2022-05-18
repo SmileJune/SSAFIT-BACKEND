@@ -6,22 +6,20 @@
 <mapper namespace="com.ssafy.ssafit.model.dao.VideoDao">
 
 	<select id="selectList" resultType="video">
-		SELECT no, title, part, channel_name channelName, url, view_cnt viewCnt
+		SELECT no, title, part_no partNo, channel_name channelName, url, spot_no spotNo
 		FROM video
 	</select>
 
 	<select id="selectOne" resultType="video">
-		SELECT no, title, part, channel_name channelName, url, view_cnt viewCnt
+		SELECT no, title, part_no partNo, channel_name channelName, url, spot_no spotNo
 		FROM video
-		WHERE no = #{no};
+		WHERE no = #{no}
 	</select>
 	
 	<select id="selectListByPart" resultType="video">
-		SELECT no, title, part, channel_name channelName, url, view_cnt viewCnt
+		SELECT no, title, part_no partNo, channel_name channelName, url, spot_no spotNo
 		FROM video
-		WHERE part = (select part
-						from part
-						where no = #{partNo});
+		WHERE part_no = #{partNo}
 	</select>
 	
 </mapper>
