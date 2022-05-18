@@ -12,8 +12,8 @@ import com.ssafy.ssafit.model.dto.User;
 import com.ssafy.ssafit.model.dto.Video;
 
 @Service
-public class UserServiceImpl implements UserService{
-	
+public class UserServiceImpl implements UserService {
+
 	@Autowired
 	private UserDao userDao;
 	@Autowired
@@ -21,22 +21,20 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User getUser(String id) {
-		return userDao.selectUser(id); 
+		return userDao.selectUserById(id);
 	}
 
 	@Override
-	public void insertJjim(User user) {
-		userDao.insertJjim(user);
+	public boolean isUser(User user) {
+		if (userDao.selectUser(user) == null) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override
-	public void deleteJjim(User user) {
-		userDao.deleteJjim(user);
-	}
-
-	@Override
-	public List<Video> listJjim(String id) {
-		return userDao.listJjim(id);
+	public void insertUser(User user) {
+		userDao.insertUser(user);
 	}
 
 	@Override
@@ -52,7 +50,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void insertFollow(Follow follow) {
 		followDao.insertFollow(follow);
-		
+
 	}
 
 }

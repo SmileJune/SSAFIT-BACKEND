@@ -1,11 +1,10 @@
 package com.ssafy.ssafit.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,13 +18,13 @@ public class ApiReviewController {
 	@Autowired
 	private ReviewServiceImpl reviewService;
 
-	@GetMapping("review/{videoNo}")
-	public List<Review> reviewList(@PathVariable int videoNo) {
-		return reviewService.getReviewListByVideoNo(videoNo);
+	@PostMapping("review/write")
+	public void writeReview(@RequestBody Review review) {
+		reviewService.createReview(review);
 	}
 
-	@PostMapping("review/write")
-	public void writeReview(Review review) {
-		reviewService.createReview(review);
+	@DeleteMapping("review/delete/{no}")
+	public void deleteReview(@PathVariable int no) {
+		reviewService.deleteReview(no);
 	}
 }

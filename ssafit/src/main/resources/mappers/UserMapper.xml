@@ -4,30 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssafy.ssafit.model.dao.UserDao">
 
-	<select id="selectUser" resultType="user">
+	<select id="selectUserById" resultType="user">
 		SELECT id, nickname, introduce
 		FROM user
 		WHERE id = #{id}
 	</select>
 	
-	<insert id="insertJjim" parameterType="user">
-		INSERT INTO jjim
-		VALUES (#{id}, #{videoNo})
-	</insert>
-	
-	<delete id="deleteJjim" parameterType="user">
-		DELETE FROM jjim
-		WHERE user_id = #{id}
-		AND video_no = #{videoNo}
-	</delete>
-
-	<select id="listJjim" resultType="video">
-		SELECT v.no, v.title, v.part, v.channel_name channelName, v.url, v.view_cnt viewCnt
-		FROM video v
-		INNER JOIN
-		(SELECT video_no
-		FROM jjim 
-		WHERE user_id=#{id}) j
-		ON v.no = j.video_no;
+	<select id="selectUser" resultType="user">
+		SELECT id, nickname, introduce
+		FROM user
+		WHERE id = #{id}
+		AND password = #{password}
 	</select>
+	
+	<insert id="insertUser" parameterType="user">
+		insert into user
+		values (#{id}, #{password}, #{nickname}, #{introduce})
+	</insert>
+
 </mapper>
