@@ -3,10 +3,10 @@ package com.ssafy.ssafit.model.dto;
 public class Video {
 	private int no;
 	private String title;
-	private String part;
+	private int partNo;
 	private String channelName;
 	private String url;
-	private int viewCnt;
+	private int spotNo;
 	
 	public int getNo() {
 		return no;
@@ -20,11 +20,11 @@ public class Video {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getPart() {
-		return part;
+	public int getPartNo() {
+		return partNo;
 	}
-	public void setPart(String part) {
-		this.part = part;
+	public void setPartNo(int partNo) {
+		this.partNo = partNo;
 	}
 	public String getChannelName() {
 		return channelName;
@@ -38,11 +38,11 @@ public class Video {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public int getViewCnt() {
-		return viewCnt;
+	public int getSpotNo() {
+		return spotNo;
 	}
-	public void setViewCnt(int viewCnt) {
-		this.viewCnt = viewCnt;
+	public void setSpotNo(int spotNo) {
+		this.spotNo = spotNo;
 	}
 	
 	
