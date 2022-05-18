@@ -12,8 +12,8 @@ import com.ssafy.ssafit.model.dto.User;
 import com.ssafy.ssafit.model.dto.Video;
 
 @Service
-public class UserServiceImpl implements UserService{
-	
+public class UserServiceImpl implements UserService {
+
 	@Autowired
 	private UserDao userDao;
 	@Autowired
@@ -21,7 +21,15 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User getUser(String id) {
-		return userDao.selectUser(id); 
+		return userDao.selectUserById(id);
+	}
+
+	@Override
+	public boolean isUser(User user) {
+		if (userDao.selectUser(user) == null) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override
@@ -52,7 +60,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void insertFollow(Follow follow) {
 		followDao.insertFollow(follow);
-		
+
 	}
 
 }

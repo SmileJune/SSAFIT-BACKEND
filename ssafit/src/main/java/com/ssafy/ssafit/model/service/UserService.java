@@ -8,10 +8,12 @@ import com.ssafy.ssafit.model.dto.Video;
 
 public interface UserService {
 	User getUser(String id);
+	boolean isUser(User user);
 	void insertJjim(User user);
 	void deleteJjim(User user);
 	List<Video> listJjim(String id);
 	List<User> getFollower(String id);
 	List<User> getFollowing(String id);
 	void insertFollow(Follow follow);
+	
 }
