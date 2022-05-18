@@ -55,7 +55,11 @@ public class ApiUserController {
 			status = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
 		return new ResponseEntity<Map<String, Object>>(result, status);
+	}
 
+	@PostMapping("/join")
+	public void join(@RequestBody User user) {
+		userService.insertUser(user);
 	}
 
 	@GetMapping("user/{id}")

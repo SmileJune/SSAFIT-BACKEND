@@ -16,5 +16,10 @@
 		WHERE id = #{id}
 		AND password = #{password}
 	</select>
+	
+	<insert id="insertUser" parameterType="user">
+		insert into user
+		values (#{id}, #{password}, #{nickname}, #{introduce})
+	</insert>
 
 </mapper>

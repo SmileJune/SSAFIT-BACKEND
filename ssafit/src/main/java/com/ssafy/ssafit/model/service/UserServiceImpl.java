@@ -31,7 +31,12 @@ public class UserServiceImpl implements UserService {
 		}
 		return true;
 	}
-	
+
+	@Override
+	public void insertUser(User user) {
+		userDao.insertUser(user);
+	}
+
 	@Override
 	public List<User> getFollower(String id) {
 		return followDao.getFollower(id);
