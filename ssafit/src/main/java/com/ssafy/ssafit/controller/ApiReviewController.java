@@ -1,9 +1,7 @@
 package com.ssafy.ssafit.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,9 +17,14 @@ public class ApiReviewController {
 
 	@Autowired
 	private ReviewServiceImpl reviewService;
-	
+
 	@PostMapping("review/write")
 	public void writeReview(@RequestBody Review review) {
 		reviewService.createReview(review);
+	}
+
+	@DeleteMapping("review/delete/{no}")
+	public void deleteReview(@PathVariable int no) {
+		reviewService.deleteReview(no);
 	}
 }

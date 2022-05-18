@@ -15,4 +15,9 @@
 		VALUES (#{reviewNo}, #{videoNo}, #{difficulty})
 	</insert>
 	
+	<delete id="deleteReview">
+		DELETE FROM review
+		WHERE no = #{no}
+	</delete>
+	
 </mapper>

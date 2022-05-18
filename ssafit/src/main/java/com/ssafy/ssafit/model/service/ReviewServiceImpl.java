@@ -22,6 +22,10 @@ public class ReviewServiceImpl implements ReviewService {
 			routine.setReviewNo(review.getNo());
 			reviewDao.insertRoutine(routine);
 		}
+	}
 
+	@Override
+	public void deleteReview(int no) {
+		reviewDao.deleteReview(no);
 	}
 }

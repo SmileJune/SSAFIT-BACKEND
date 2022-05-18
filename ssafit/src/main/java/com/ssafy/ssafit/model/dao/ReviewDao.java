@@ -6,4 +6,5 @@ import com.ssafy.ssafit.model.dto.Routine;
 public interface ReviewDao {
 	void insertReview(Review review);
 	void insertRoutine(Routine routine);
+	void deleteReview(int no);
 }
