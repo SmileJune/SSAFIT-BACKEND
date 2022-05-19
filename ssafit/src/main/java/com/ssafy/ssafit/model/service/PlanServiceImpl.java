@@ -1,10 +1,13 @@
 package com.ssafy.ssafit.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.ssafit.model.dao.PlanDao;
 import com.ssafy.ssafit.model.dto.Plan;
+import com.ssafy.ssafit.model.dto.Video;
 
 @Service
 public class PlanServiceImpl implements PlanService{
@@ -21,7 +24,11 @@ public class PlanServiceImpl implements PlanService{
 			input.setVideoNo(videoNo);
 			planDao.insertPlan(plan);
 		}
+	}
 
+	@Override
+	public List<Video> getPlan(Plan plan) {
+		return planDao.selectPlan(plan);
 	}
 
 }
