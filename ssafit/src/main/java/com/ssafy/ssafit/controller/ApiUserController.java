@@ -59,7 +59,7 @@ public class ApiUserController {
 
 	@PostMapping("/join")
 	public void join(@RequestBody User user) {
-		userService.insertUser(user);
+		userService.insertUser(user); 
 	}
 
 	@GetMapping("user/{id}")

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.ssafit.model.dao.PlanDao">
+
+	<delete id="deletePlan">
+		DELETE FROM plan
+		WHERE user_id = #{userId}
+		AND date = #{date}
+	</delete>
+	
+	<insert id="insertPlan" parameterType="plan">
+		INSERT INTO plan
+		VALUES (#{userId}, #{videoNo}, #{date})
+	</insert>
+	
+	<select id="selectPlan" parameterType="plan" resultType="video">
+		SELECT v.no, v.title, v.part_no partNo, v.channel_name channelName, v.url, v.spot_no spotNo 
+		FROM video v
+		INNER JOIN (SELECT video_no
+					FROM plan
+					WHERE user_id = #{userId}
+					AND date = #{date}) p
+		ON v.no = p.video_no
+	</select>
+	
+</mapper>
