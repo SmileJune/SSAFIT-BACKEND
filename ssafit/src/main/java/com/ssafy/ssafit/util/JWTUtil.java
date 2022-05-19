@@ -1,5 +1,7 @@
 package com.ssafy.ssafit.util;
 
+import java.util.Base64;
+
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Jwts;
@@ -9,6 +11,11 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class JWTUtil {
 	
 	private static final String SALT = "SSAFIT";
+	
+	public static String getUserIdByToken(String token) {
+		String str = new String(Base64.getDecoder().decode(token.split("\\.")[1]));
+		return str.split("[\\\"]")[3];
+	}
 	
 	public String  createToken(String claimId, String data) throws Exception{
 		return Jwts.builder()
