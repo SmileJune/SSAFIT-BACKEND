@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.ssafit.model.dto.Condition;
+import com.ssafy.ssafit.model.dto.Plan;
 import com.ssafy.ssafit.model.dto.Video;
 import com.ssafy.ssafit.model.service.VideoServiceImpl;
 
@@ -41,4 +42,5 @@ public class ApiVideoController {
 	public List<Video> searchVideos(@RequestBody Condition condition){
 		return videoService.searchVideos(condition);
 	}
+
 }
