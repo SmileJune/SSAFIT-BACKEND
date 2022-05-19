@@ -98,7 +98,6 @@ on v.no = c.video_no
 where v.spot_no = 1
 AND v.part_no = 1;
 
-drop table plan;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`plan` (
   `user_id` VARCHAR(45) NOT NULL,

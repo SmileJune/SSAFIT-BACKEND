@@ -42,9 +42,5 @@ public class ApiVideoController {
 	public List<Video> searchVideos(@RequestBody Condition condition){
 		return videoService.searchVideos(condition);
 	}
-	
-	@PostMapping("plan/write")
-	public void writePlan(@RequestBody Plan plan) {
-		videoService.writePlan(plan);
-	}
+
 }

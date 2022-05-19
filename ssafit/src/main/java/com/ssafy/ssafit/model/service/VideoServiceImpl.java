@@ -36,14 +36,4 @@ public class VideoServiceImpl implements VideoService{
 		return VideoDao.selectVideoByCondition(condition);
 	}
 
-	@Override
-	public void writePlan(Plan plan) {
-		System.out.println(plan);
-		VideoDao.deletePlan(plan);
-		for(Integer videoNo : plan.getVideoList()) {
-			Plan input = plan;
-			input.setVideoNo(videoNo);
-			VideoDao.insertPlan(plan);
-		}
-	}
 }
