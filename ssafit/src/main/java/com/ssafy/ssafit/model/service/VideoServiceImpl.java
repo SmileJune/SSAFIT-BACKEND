@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.ssafit.model.dao.VideoDao;
+import com.ssafy.ssafit.model.dto.Condition;
 import com.ssafy.ssafit.model.dto.Video;
 
 @Service
@@ -27,5 +28,10 @@ public class VideoServiceImpl implements VideoService{
 	@Override
 	public List<Video> getVideoListByPart(int partNo) {
 		return VideoDao.selectListByPart(partNo);
+	}
+
+	@Override
+	public List<Video> searchVideos(Condition condition) {
+		return VideoDao.selectVideoByCondition(condition);
 	}
 }

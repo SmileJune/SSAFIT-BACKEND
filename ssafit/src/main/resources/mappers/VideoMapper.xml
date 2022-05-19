@@ -22,4 +22,18 @@
 		WHERE part_no = #{partNo}
 	</select>
 	
+	<select id="selectVideoByCondition" parameterType="condition" resultType="video">
+		select v.no, v.title, v.part_no partNo, v.channel_name channelName, v.url, v.spot_no spotNo 
+		from video v
+		inner join (
+					select video_no
+					from routine
+					group by video_no
+					having avg(difficulty) BETWEEN (#{difficulty}-1) AND #{difficulty}
+					) c
+		on v.no = c.video_no
+		where v.spot_no = #{spotNo}
+		AND v.part_no = #{partNo}
+	</select>
+	
 </mapper>

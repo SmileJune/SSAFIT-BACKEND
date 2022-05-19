@@ -12,7 +12,7 @@ import com.ssafy.ssafit.util.JWTUtil;
 
 @Component
 public class JWTInterceptor implements HandlerInterceptor {
-	private static final String HEADER_AUTH = "auth-token";
+	private static final String HEADER_AUTH = "access-token";
 
 	@Autowired
 	private JWTUtil jwtUtil;
