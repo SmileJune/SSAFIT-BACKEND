@@ -36,4 +36,15 @@
 		AND v.part_no = #{partNo}
 	</select>
 	
+	<delete id="deletePlan">
+		DELETE FROM plan
+		WHERE user_id = #{userId}
+		AND date = #{date}
+	</delete>
+	
+	<insert id="insertPlan" parameterType="plan">
+		INSERT INTO plan
+		VALUES (#{userId}, #{videoNo}, #{date})
+	</insert>
+	
 </mapper>
