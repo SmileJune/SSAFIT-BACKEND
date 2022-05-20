@@ -32,4 +32,20 @@
 		WHERE review_no = #{reviewNo}
 		AND video_no = #{videoNo}
 	</update>
+	
+	<select id="selectReviews" resultType="review">
+		SELECT no, user_id userId, title, content, date
+		FROM review
+		ORDER BY date DESC
+	</select>
+	
+	<select id="selectRoutineByNo" resultType="video">
+		SELECT v.no, v.title, v.part_no partNo, v.channel_name channelName, v.url, v.spot_no spotNo 
+		FROM video v
+		INNER JOIN (
+					select video_no
+					from routine
+					where review_no = #{reviewNo}) r
+		ON v.no = r.video_no
+	</select>
 </mapper>
