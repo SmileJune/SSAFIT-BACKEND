@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.ssafit.model.dto.Comment;
 import com.ssafy.ssafit.model.dto.Review;
 import com.ssafy.ssafit.model.service.ReviewServiceImpl;
 import com.ssafy.ssafit.util.JWTUtil;
@@ -47,5 +48,22 @@ public class ApiReviewController {
 	@PutMapping("review/update")
 	public void updateReview(@RequestBody Review review) {
 		reviewService.updateReview(review);
+	}
+	
+	
+	@PostMapping("comment/write")
+	public void writeComment(@RequestHeader("access-token") String token, @RequestBody Comment comment) {
+		comment.setUserId(JWTUtil.getUserIdByToken(token));
+		reviewService.createComment(comment);
+	}
+	
+	@DeleteMapping("comment/delete/{no}")
+	public void deleteComment(@PathVariable int no) {
+		reviewService.deleteComment(no);
+	}
+	
+	@PutMapping("comment/update")
+	public void updateComment(@RequestBody Comment comment) {
+		reviewService.updateComment(comment);
 	}
 }

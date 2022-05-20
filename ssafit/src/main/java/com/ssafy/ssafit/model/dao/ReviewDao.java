@@ -2,6 +2,7 @@ package com.ssafy.ssafit.model.dao;
 
 import java.util.List;
 
+import com.ssafy.ssafit.model.dto.Comment;
 import com.ssafy.ssafit.model.dto.Review;
 import com.ssafy.ssafit.model.dto.Routine;
 
@@ -15,4 +16,9 @@ public interface ReviewDao {
 	
 	List<Review> selectReviews();
 	List<Routine> selectRoutineByNo(int reviewNo);
+	
+	List<Comment> selectCommentByNo(int reviewNo);
+	void insertComment(Comment comment);
+	void deleteComment(int no);
+	void updateComment(Comment comment);
 }

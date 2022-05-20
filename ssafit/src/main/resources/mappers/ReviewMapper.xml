@@ -48,4 +48,27 @@
 					where review_no = #{reviewNo}) r
 		ON v.no = r.video_no
 	</select>
+	
+	<select id="selectCommentByNo" resultType="comment">
+		SELECT no, review_no reviewNo, user_id userId, comment, date
+		FROM comment
+		WHERE review_no = #{reviewNo};
+	</select>
+	
+	<insert id="insertComment" parameterType="comment">
+		INSERT INTO comment (review_no, user_id, comment, date)
+		VALUES
+		(#{reviewNo}, #{userId}, #{comment}, now())
+	</insert>
+	
+	<delete id="deleteComment">
+		DELETE FROM comment
+		WHERE no = #{no};
+	</delete>
+	
+	<update id="updateComment">
+		UPDATE comment
+		SET comment = #{comment}
+		WHERE no = #{no}
+	</update>
 </mapper>

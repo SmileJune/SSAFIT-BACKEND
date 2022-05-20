@@ -106,9 +106,31 @@ CREATE TABLE IF NOT EXISTS `mydb`.`plan` (
   )
 ENGINE = InnoDB;
 
+drop table comment;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`comment` (
+  `review_no` INT NOT NULL,
+  `user_id` VARCHAR(45) NOT NULL,
+  `comment` VARCHAR(100) NOT NULL,
+  `date` TIMESTAMP NOT NULL,
+  FOREIGN KEY(review_no)
+	REFERENCES review(no)
+    ON DELETE CASCADE
+  )
+ENGINE = InnoDB;
+
 select *
 from plan;
 
+
+
+insert into plan
+values
+('wjdgus',1,'2022-05-19'),
+('wjdgus',2,'2022-05-19'),
+('wjdgus',3,'2022-05-19'),
+('wjdgus',4,'2022-05-19'),
+('wjdgus',5,'2022-05-19');
 
 DELETE FROM plan
 WHERE user_id = 'dlfwns'
@@ -122,3 +144,36 @@ INNER JOIN (SELECT video_no
 			WHERE user_id='dlfwns'
 			AND date = '2022-05-20') p
 ON v.no = p.video_no;
+
+select *
+from user;
+
+select *
+from review;
+
+update review
+set title = 'title2', content = 'content2'
+where no = 1;
+
+select *
+from routine;
+
+update routine
+set difficulty = 3
+WHERE review_no = 1
+AND video_no = 2;
+
+select *
+from review
+order by date DESC;
+
+select v.no, v.title, v.part_no partNo, v.channel_name channelName, v.url, v.spot_no spotNo 
+from video v
+inner join (
+			select video_no
+			from routine
+			where review_no = 1) r
+on v.no = r.video_no;
+
+select *
+from follow;
