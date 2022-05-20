@@ -7,4 +7,6 @@ import com.ssafy.ssafit.model.dto.Review;
 public interface ReviewService {
 	void createReview(Review review);
 	void deleteReview(int no);
+	void updateReview(Review review);
+	List<Review> readReview();
 }
