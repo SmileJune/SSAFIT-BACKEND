@@ -1,5 +1,7 @@
 package com.ssafy.ssafit.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +29,23 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public void deleteReview(int no) {
 		reviewDao.deleteReview(no);
+	}
+
+	@Override
+	public void updateReview(Review review) {
+		reviewDao.updateReview(review);
+		for (Routine routine : review.getVideoList()) {
+			routine.setReviewNo(review.getNo());
+			reviewDao.updateRoutine(routine);
+		}
+	}
+
+	@Override
+	public List<Review> readReview() {
+		List<Review> reviews = reviewDao.selectReviews();
+		for (Review review : reviews) {
+			review.setVideoList(reviewDao.selectRoutineByNo(review.getNo()));
+		}
+		return reviews;
 	}
 }

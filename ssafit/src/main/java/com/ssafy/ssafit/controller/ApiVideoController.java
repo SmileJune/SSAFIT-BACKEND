@@ -42,5 +42,4 @@ public class ApiVideoController {
 	public List<Video> searchVideos(@RequestBody Condition condition){
 		return videoService.searchVideos(condition);
 	}
-
 }

@@ -7,12 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.ssafit.model.dao.VideoDao;
 import com.ssafy.ssafit.model.dto.Condition;
-import com.ssafy.ssafit.model.dto.Plan;
 import com.ssafy.ssafit.model.dto.Video;
 
 @Service
-public class VideoServiceImpl implements VideoService{
-	
+public class VideoServiceImpl implements VideoService {
+
 	@Autowired
 	private VideoDao VideoDao;
 
@@ -35,5 +34,4 @@ public class VideoServiceImpl implements VideoService{
 	public List<Video> searchVideos(Condition condition) {
 		return VideoDao.selectVideoByCondition(condition);
 	}
-
 }
