@@ -17,5 +17,6 @@ public interface ReviewDao {
 	List<Review> selectReviews();
 	List<Routine> selectRoutineByNo(int reviewNo);
 	
+	List<Comment> selectCommentByNo(int reviewNo);
 	void insertComment(Comment comment);
 }

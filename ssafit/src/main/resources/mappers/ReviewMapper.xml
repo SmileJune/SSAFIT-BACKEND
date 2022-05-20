@@ -49,6 +49,12 @@
 		ON v.no = r.video_no
 	</select>
 	
+	<select id="selectCommentByNo" resultType="comment">
+		SELECT review_no reviewNo, user_id userId, comment, date
+		FROM comment
+		WHERE review_no = #{reviewNo};
+	</select>
+	
 	<insert id="insertComment" parameterType="comment">
 		INSERT INTO comment
 		VALUES

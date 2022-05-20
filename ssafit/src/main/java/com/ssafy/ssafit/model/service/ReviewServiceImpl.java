@@ -46,6 +46,7 @@ public class ReviewServiceImpl implements ReviewService {
 		List<Review> reviews = reviewDao.selectReviews();
 		for (Review review : reviews) {
 			review.setVideoList(reviewDao.selectRoutineByNo(review.getNo()));
+			review.setCommentList(reviewDao.selectCommentByNo(review.getNo()));
 		}
 		return reviews;
 	}
