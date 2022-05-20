@@ -43,7 +43,7 @@ public class ApiVideoController {
 		return videoService.searchVideos(condition);
 	}
 	
-	@PostMapping("video/plan/videos")
+	@PostMapping("video/plan/")
 	public List<Video> getPlanVideos(@RequestBody Plan plan){
 		return videoService.getPlanVideos(plan.getVideoList());
 	}
