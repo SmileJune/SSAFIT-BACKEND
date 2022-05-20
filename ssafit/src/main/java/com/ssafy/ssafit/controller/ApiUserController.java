@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -59,7 +60,7 @@ public class ApiUserController {
 
 	@PostMapping("/join")
 	public void join(@RequestBody User user) {
-		userService.insertUser(user); 
+		userService.insertUser(user);
 	}
 
 	@GetMapping("user/{id}")
@@ -78,7 +79,8 @@ public class ApiUserController {
 	}
 
 	@PostMapping("follow/write")
-	public void writeFollow(Follow follow) {
+	public void writeFollow(@RequestHeader("access-token") String token, @RequestBody Follow follow) {
+		follow.setFrom(JWTUtil.getUserIdByToken(token));
 		userService.insertFollow(follow);
 	}
 }
