@@ -11,4 +11,5 @@ public interface VideoService {
 	List<Video> getVideoList();
 	List<Video> getVideoListByPart(int partNo);
 	List<Video> searchVideos(Condition condition);
+	List<Video> getPlanVideos(List<Integer> somedayPlan);
 }
