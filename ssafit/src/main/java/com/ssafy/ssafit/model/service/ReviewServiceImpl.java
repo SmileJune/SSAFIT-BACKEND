@@ -28,4 +28,13 @@ public class ReviewServiceImpl implements ReviewService {
 	public void deleteReview(int no) {
 		reviewDao.deleteReview(no);
 	}
+
+	@Override
+	public void updateReview(Review review) {
+		reviewDao.updateReview(review);
+		for(Routine routine : review.getVideoList()) {
+			routine.setReviewNo(review.getNo());
+			reviewDao.updateRoutine(routine);
+		}
+	}
 }

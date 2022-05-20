@@ -20,4 +20,16 @@
 		WHERE no = #{no}
 	</delete>
 	
+	<update id="updateReview" parameterType="review">
+		UPDATE review
+		SET title = #{title}, content = #{content}
+		where no = #{no}
+	</update>
+	
+	<update id="updateRoutine" parameterType="routine">
+		UPDATE routine
+		SET difficulty = #{difficulty}
+		WHERE review_no = #{reviewNo}
+		AND video_no = #{videoNo}
+	</update>
 </mapper>

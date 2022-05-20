@@ -7,4 +7,7 @@ public interface ReviewDao {
 	void insertReview(Review review);
 	void insertRoutine(Routine routine);
 	void deleteReview(int no);
+	
+	void updateReview(Review review);
+	void updateRoutine(Routine routine);
 }
