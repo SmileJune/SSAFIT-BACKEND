@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.ssafit.model.dao.ReviewDao;
+import com.ssafy.ssafit.model.dto.Comment;
 import com.ssafy.ssafit.model.dto.Review;
 import com.ssafy.ssafit.model.dto.Routine;
 
@@ -47,5 +48,10 @@ public class ReviewServiceImpl implements ReviewService {
 			review.setVideoList(reviewDao.selectRoutineByNo(review.getNo()));
 		}
 		return reviews;
+	}
+
+	@Override
+	public void createComment(Comment comment) {
+		reviewDao.insertComment(comment);
 	}
 }

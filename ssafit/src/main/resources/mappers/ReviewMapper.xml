@@ -48,4 +48,10 @@
 					where review_no = #{reviewNo}) r
 		ON v.no = r.video_no
 	</select>
+	
+	<insert id="insertComment" parameterType="comment">
+		INSERT INTO comment
+		VALUES
+		(#{reviewNo}, #{userId}, #{comment}, now())
+	</insert>
 </mapper>
