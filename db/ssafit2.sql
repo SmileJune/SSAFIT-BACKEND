@@ -112,5 +112,13 @@ from plan;
 
 DELETE FROM plan
 WHERE user_id = 'dlfwns'
-AND date = '2022-05-19'
+AND date = '2022-05-19';
 
+
+SELECT v.no, v.title, v.part_no partNo, v.channel_name channelName, v.url, v.spot_no spotNo 
+FROM video v
+INNER JOIN (SELECT video_no
+			FROM plan
+			WHERE user_id='dlfwns'
+			AND date = '2022-05-20') p
+ON v.no = p.video_no;
