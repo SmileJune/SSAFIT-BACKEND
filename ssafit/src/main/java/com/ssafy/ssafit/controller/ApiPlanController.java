@@ -22,7 +22,8 @@ public class ApiPlanController {
 	private PlanServiceImpl planServiceImpl;
 
 	@PostMapping("plan/write")
-	public void writePlan(@RequestBody Plan plan) {
+	public void writePlan(@RequestHeader("access-token") String token,@RequestBody Plan plan) {
+		plan.setUserId(JWTUtil.getUserIdByToken(token));
 		planServiceImpl.writePlan(plan);
 	}
 	
