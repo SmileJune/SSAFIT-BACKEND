@@ -68,6 +68,11 @@ public class ApiUserController {
 		return userService.getUser(id);
 	}
 
+	@GetMapping("user")
+	public User getMyProfile(@RequestHeader("access-token") String token) {
+		return userService.getUser(JWTUtil.getUserIdByToken(token));
+	}
+
 	@GetMapping("follower/{id}")
 	public List<User> listFollower(@PathVariable String id) {
 		return userService.getFollower(id);
