@@ -1,6 +1,5 @@
 package com.ssafy.ssafit.model.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,14 +34,4 @@ public class VideoServiceImpl implements VideoService {
 	public List<Video> searchVideos(Condition condition) {
 		return VideoDao.selectVideoByCondition(condition);
 	}
-
-	@Override
-	public List<Video> getPlanVideos(List<Integer> somedayPlan) {
-		List<Video> list = new ArrayList<>();
-		for (int videoNo : somedayPlan) {
-			list.add(VideoDao.selectOne(videoNo));
-		}
-		return list;
-	}
-
 }
