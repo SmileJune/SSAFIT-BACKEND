@@ -65,4 +65,10 @@
 		DELETE FROM comment
 		WHERE no = #{no};
 	</delete>
+	
+	<update id="updateComment">
+		UPDATE comment
+		SET comment = #{comment}
+		WHERE no = #{no}
+	</update>
 </mapper>

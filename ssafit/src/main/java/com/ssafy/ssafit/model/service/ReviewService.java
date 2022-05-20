@@ -13,5 +13,6 @@ public interface ReviewService {
 	
 	void createComment(Comment comment);
 	void deleteComment(int no);
+	void updateComment(Comment comment);
 	
 }

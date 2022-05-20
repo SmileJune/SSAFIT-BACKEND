@@ -61,4 +61,9 @@ public class ApiReviewController {
 	public void deleteComment(@PathVariable int no) {
 		reviewService.deleteComment(no);
 	}
+	
+	@PutMapping("comment/update")
+	public void updateComment(@RequestBody Comment comment) {
+		reviewService.updateComment(comment);
+	}
 }

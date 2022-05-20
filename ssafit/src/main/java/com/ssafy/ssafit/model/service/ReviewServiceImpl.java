@@ -60,4 +60,9 @@ public class ReviewServiceImpl implements ReviewService {
 	public void deleteComment(int no) {
 		reviewDao.deleteComment(no);
 	}
+
+	@Override
+	public void updateComment(Comment comment) {
+		reviewDao.updateComment(comment);
+	}
 }
