@@ -56,4 +56,9 @@ public class ApiReviewController {
 		comment.setUserId(JWTUtil.getUserIdByToken(token));
 		reviewService.createComment(comment);
 	}
+	
+	@DeleteMapping("comment/delete/{no}")
+	public void deleteComment(@PathVariable int no) {
+		reviewService.deleteComment(no);
+	}
 }

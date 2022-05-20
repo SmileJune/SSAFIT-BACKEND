@@ -1,11 +1,18 @@
 package com.ssafy.ssafit.model.dto;
 
 public class Comment {
+	private int no;
 	private int reviewNo;
 	private String userId;
 	private String comment;
 	private String date;
 	
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
 	public int getReviewNo() {
 		return reviewNo;
 	}
@@ -30,6 +37,7 @@ public class Comment {
 	public void setDate(String date) {
 		this.date = date;
 	}
+	
 	
 	
 }

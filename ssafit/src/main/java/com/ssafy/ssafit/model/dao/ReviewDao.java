@@ -19,4 +19,5 @@ public interface ReviewDao {
 	
 	List<Comment> selectCommentByNo(int reviewNo);
 	void insertComment(Comment comment);
+	void deleteComment(int no);
 }

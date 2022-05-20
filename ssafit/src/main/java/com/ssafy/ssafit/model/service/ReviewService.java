@@ -12,4 +12,6 @@ public interface ReviewService {
 	List<Review> readReview();
 	
 	void createComment(Comment comment);
+	void deleteComment(int no);
+	
 }
