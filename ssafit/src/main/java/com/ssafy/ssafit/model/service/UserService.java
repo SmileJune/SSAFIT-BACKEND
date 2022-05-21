@@ -10,6 +10,8 @@ public interface UserService {
 	boolean isUser(User user);
 	void insertUser(User user);
 	void updateUser(User user);
+	void deleteUser(String id);
+	
 	List<User> getFollower(String id);
 	List<User> getFollowing(String id);
 	void insertFollow(Follow follow);
