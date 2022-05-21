@@ -9,4 +9,5 @@ public interface FollowDao {
 	List<User> getFollower(String id);
 	List<User> getFollowing(String id);
 	void insertFollow(Follow follow);
+	void deleteFollow(Follow follow);
 }

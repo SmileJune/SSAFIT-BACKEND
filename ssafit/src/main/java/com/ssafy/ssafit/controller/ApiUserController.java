@@ -65,6 +65,7 @@ public class ApiUserController {
 
 	@GetMapping("user/{id}")
 	public User listOne(@PathVariable String id) {
+		System.out.println(userService.getUser(id));
 		return userService.getUser(id);
 	}
 
@@ -72,7 +73,7 @@ public class ApiUserController {
 	public User getMyProfile(@RequestHeader("access-token") String token) {
 		return userService.getUser(JWTUtil.getUserIdByToken(token));
 	}
-
+	
 	@GetMapping("follower/{id}")
 	public List<User> listFollower(@PathVariable String id) {
 		return userService.getFollower(id);
@@ -87,5 +88,13 @@ public class ApiUserController {
 	public void writeFollow(@RequestHeader("access-token") String token, @RequestBody Follow follow) {
 		follow.setFrom(JWTUtil.getUserIdByToken(token));
 		userService.insertFollow(follow);
+	}
+	
+	@DeleteMapping("follow/delete/{to}")
+	public void deleteFollow(@RequestHeader("access-token") String token, @PathVariable String to) {
+		Follow follow = new Follow();
+		follow.setFrom(JWTUtil.getUserIdByToken(token));
+		follow.setTo(to);
+		userService.deleteFollow(follow);
 	}
 }

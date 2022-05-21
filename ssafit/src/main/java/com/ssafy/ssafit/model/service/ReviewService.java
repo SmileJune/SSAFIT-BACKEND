@@ -15,4 +15,6 @@ public interface ReviewService {
 	void deleteComment(int no);
 	void updateComment(Comment comment);
 	
+	List<Review> readTimeline(String id);
+	
 }

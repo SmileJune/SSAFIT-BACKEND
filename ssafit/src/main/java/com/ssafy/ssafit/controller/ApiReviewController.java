@@ -30,7 +30,7 @@ public class ApiReviewController {
 		return reviewService.readReview();
 	}
 //	@GetMapping("review/hot")
-//	public void readReviewHot() {
+//	public void readReviewHot() { 
 //		
 //	}
 
@@ -64,6 +64,11 @@ public class ApiReviewController {
 	
 	@PutMapping("comment/update")
 	public void updateComment(@RequestBody Comment comment) {
-		reviewService.updateComment(comment);
+		reviewService.updateComment(comment); 
+	}
+	
+	@GetMapping("review/timeline")
+	public List<Review> readTimeline(@RequestHeader("access-token") String token) {
+		return reviewService.readTimeline(JWTUtil.getUserIdByToken(token));
 	}
 }
