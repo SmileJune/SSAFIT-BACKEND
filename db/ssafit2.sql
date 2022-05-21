@@ -109,10 +109,12 @@ ENGINE = InnoDB;
 drop table comment;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`comment` (
+  `no` INT NOT NULL auto_increment,
   `review_no` INT NOT NULL,
   `user_id` VARCHAR(45) NOT NULL,
   `comment` VARCHAR(100) NOT NULL,
   `date` TIMESTAMP NOT NULL,
+  primary key(no),
   FOREIGN KEY(review_no)
 	REFERENCES review(no)
     ON DELETE CASCADE
@@ -122,7 +124,7 @@ ENGINE = InnoDB;
 select *
 from plan;
 
-
+select * from comment;
 
 insert into plan
 values
@@ -177,3 +179,16 @@ on v.no = r.video_no;
 
 select *
 from follow;
+
+select *
+from comment;
+
+delete from review
+where no = 1;
+
+select no review_no reviewNo, user_id userId, comment, date
+from comment
+where review_no=8;
+
+select *
+from comment;

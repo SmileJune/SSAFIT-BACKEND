@@ -65,6 +65,7 @@ public class ApiUserController {
 
 	@GetMapping("user/{id}")
 	public User listOne(@PathVariable String id) {
+		System.out.println(userService.getUser(id));
 		return userService.getUser(id);
 	}
 

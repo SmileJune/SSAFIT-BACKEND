@@ -21,4 +21,6 @@ public interface ReviewDao {
 	void insertComment(Comment comment);
 	void deleteComment(int no);
 	void updateComment(Comment comment);
+	
+	List<Review> selectFollowReviews(String id);
 }

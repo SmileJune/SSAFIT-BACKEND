@@ -65,4 +65,14 @@ public class ReviewServiceImpl implements ReviewService {
 	public void updateComment(Comment comment) {
 		reviewDao.updateComment(comment);
 	}
+
+	@Override
+	public List<Review> readTimeline(String id) {
+		List<Review> reviews = reviewDao.selectFollowReviews(id);
+		for (Review review : reviews) {
+			review.setVideoList(reviewDao.selectRoutineByNo(review.getNo()));
+			review.setCommentList(reviewDao.selectCommentByNo(review.getNo()));
+		}
+		return reviews;
+	}
 }

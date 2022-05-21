@@ -39,6 +39,15 @@
 		ORDER BY date DESC
 	</select>
 	
+	<select id="selectFollowReviews" resultType="review">
+		SELECT no, user_id userId, title, content, date
+		FROM review
+		WHERE user_id IN (select `to`
+							from follow
+							where `from` = #{id})
+		ORDER BY date DESC;
+	</select>
+	
 	<select id="selectRoutineByNo" resultType="video">
 		SELECT v.no, v.title, v.part_no partNo, v.channel_name channelName, v.url, v.spot_no spotNo 
 		FROM video v
