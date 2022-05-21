@@ -67,7 +67,7 @@ public class ApiReviewController {
 		reviewService.updateComment(comment); 
 	}
 	
-	@GetMapping("review/timeline")
+	@GetMapping("review/timeline") 
 	public List<Review> readTimeline(@RequestHeader("access-token") String token) {
 		return reviewService.readTimeline(JWTUtil.getUserIdByToken(token));
 	}
