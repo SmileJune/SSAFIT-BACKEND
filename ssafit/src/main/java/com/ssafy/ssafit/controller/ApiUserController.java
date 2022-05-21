@@ -86,7 +86,7 @@ public class ApiUserController {
 	}
 	
 	@DeleteMapping("user/delete")
-	public void deleteUset(@RequestHeader("access-token") String token) {
+	public void deleteUser(@RequestHeader("access-token") String token) {
 		userService.deleteUser(JWTUtil.getUserIdByToken(token));
 	}
 
