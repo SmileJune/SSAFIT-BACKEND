@@ -45,7 +45,8 @@
 		WHERE user_id IN (select `to`
 							from follow
 							where `from` = #{id})
-		ORDER BY date DESC;
+		ORDER BY date DESC
+		LIMIT 5;
 	</select>
 	
 	<select id="selectRoutineByNo" resultType="video">

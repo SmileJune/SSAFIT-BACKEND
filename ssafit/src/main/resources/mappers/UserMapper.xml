@@ -21,5 +21,11 @@
 		insert into user
 		values (#{id}, #{password}, #{nickname}, #{introduce})
 	</insert>
+	
+	<update id="updateUser" parameterType="user">
+		UPDATE user
+		SET nickname = #{nickname}, introduce = #{introduce}
+		where id = #{id}
+	</update>
 
 </mapper>

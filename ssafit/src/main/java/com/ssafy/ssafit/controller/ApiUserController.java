@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.ssafit.model.dto.Follow;
 import com.ssafy.ssafit.model.dto.User;
-import com.ssafy.ssafit.model.dto.Video;
 import com.ssafy.ssafit.model.service.UserServiceImpl;
 import com.ssafy.ssafit.util.JWTUtil;
 
@@ -62,10 +62,18 @@ public class ApiUserController {
 	public void join(@RequestBody User user) {
 		userService.insertUser(user);
 	}
+	
+	@PostMapping("user/identify")
+	public boolean identify(@RequestHeader("access-token") String token, @RequestBody User user) {
+		user.setId(JWTUtil.getUserIdByToken(token));
+		if(userService.isUser(user)) {
+			return true;
+		}
+		return false;
+	}
 
 	@GetMapping("user/{id}")
 	public User listOne(@PathVariable String id) {
-		System.out.println(userService.getUser(id));
 		return userService.getUser(id);
 	}
 
@@ -74,6 +82,12 @@ public class ApiUserController {
 		return userService.getUser(JWTUtil.getUserIdByToken(token));
 	}
 	
+	@PutMapping("user/update")
+	public void updateUser(@RequestHeader("access-token") String token, @RequestBody User user) {
+		user.setId(JWTUtil.getUserIdByToken(token));
+		userService.updateUser(user);
+	}
+
 	@GetMapping("follower/{id}")
 	public List<User> listFollower(@PathVariable String id) {
 		return userService.getFollower(id);
@@ -89,7 +103,7 @@ public class ApiUserController {
 		follow.setFrom(JWTUtil.getUserIdByToken(token));
 		userService.insertFollow(follow);
 	}
-	
+
 	@DeleteMapping("follow/delete/{to}")
 	public void deleteFollow(@RequestHeader("access-token") String token, @PathVariable String to) {
 		Follow follow = new Follow();

@@ -58,4 +58,9 @@ public class UserServiceImpl implements UserService {
 		followDao.deleteFollow(follow);
 	}
 
+	@Override
+	public void updateUser(User user) {
+		userDao.updateUser(user);
+	}
+
 }

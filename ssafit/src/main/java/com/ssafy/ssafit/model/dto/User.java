@@ -37,4 +37,11 @@ public class User {
 	public void setVideoNo(int videoNo) {
 		this.videoNo = videoNo;
 	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", password=" + password + ", nickname=" + nickname + ", introduce=" + introduce
+				+ ", videoNo=" + videoNo + "]";
+	}
+	
+	
 }
