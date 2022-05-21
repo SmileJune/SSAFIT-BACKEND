@@ -5,6 +5,10 @@ public class Follow {
 	private String from;
 	private String to;
 	
+	public Follow() {
+		super();
+	}
+	
 	public String getFrom() {
 		return from;
 	}
@@ -16,6 +20,11 @@ public class Follow {
 	}
 	public void setTo(String to) {
 		this.to = to;
+	}
+
+	@Override
+	public String toString() {
+		return "Follow [from=" + from + ", to=" + to + "]";
 	}
 	
 	

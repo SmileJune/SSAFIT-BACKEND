@@ -28,4 +28,10 @@
 		values (#{from}, #{to})
 	</insert>
 	
+	<delete id="deleteFollow" parameterType="follow">
+		DELETE FROM follow
+		WHERE `from` = #{from}
+		AND `to` = #{to}
+	</delete>
+	
 </mapper>
