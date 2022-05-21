@@ -9,6 +9,7 @@ public interface UserService {
 	User getUser(String id);
 	boolean isUser(User user);
 	void insertUser(User user);
+	void updateUser(User user);
 	List<User> getFollower(String id);
 	List<User> getFollowing(String id);
 	void insertFollow(Follow follow);

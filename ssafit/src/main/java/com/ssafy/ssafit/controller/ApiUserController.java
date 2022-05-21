@@ -80,6 +80,12 @@ public class ApiUserController {
 	public User getMyProfile(@RequestHeader("access-token") String token) {
 		return userService.getUser(JWTUtil.getUserIdByToken(token));
 	}
+	
+	@PostMapping("user/update")
+	public void updateUser(@RequestHeader("access-token") String token, @RequestBody User user) {
+		user.setId(JWTUtil.getUserIdByToken(token));
+		userService.updateUser(user);
+	}
 
 	@GetMapping("follower/{id}")
 	public List<User> listFollower(@PathVariable String id) {
