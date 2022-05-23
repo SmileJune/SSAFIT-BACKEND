@@ -21,7 +21,7 @@ public class ReviewServiceImpl implements ReviewService {
 		// insertReview 하나랑
 		// insertRoutine 여러개
 		reviewDao.insertReview(review);
-		for (Routine routine : review.getVideoList()) {
+		for (Routine routine : review.getRoutineList()) {
 			routine.setReviewNo(review.getNo());
 			reviewDao.insertRoutine(routine);
 		}
@@ -35,7 +35,7 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public void updateReview(Review review) {
 		reviewDao.updateReview(review);
-		for (Routine routine : review.getVideoList()) {
+		for (Routine routine : review.getRoutineList()) {
 			routine.setReviewNo(review.getNo());
 			reviewDao.updateRoutine(routine);
 		}
@@ -45,7 +45,8 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<Review> readReview() {
 		List<Review> reviews = reviewDao.selectReviews();
 		for (Review review : reviews) {
-			review.setVideoList(reviewDao.selectRoutineByNo(review.getNo()));
+			review.setVideoList(reviewDao.selectVideoByNo(review.getNo()));
+			review.setRoutineList(reviewDao.selectRoutineByNo(review.getNo()));
 			review.setCommentList(reviewDao.selectCommentByNo(review.getNo()));
 		}
 		return reviews;
@@ -70,7 +71,8 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<Review> readTimeline(String id) {
 		List<Review> reviews = reviewDao.selectFollowReviews(id);
 		for (Review review : reviews) {
-			review.setVideoList(reviewDao.selectRoutineByNo(review.getNo()));
+			review.setVideoList(reviewDao.selectVideoByNo(review.getNo()));
+			review.setRoutineList(reviewDao.selectRoutineByNo(review.getNo()));
 			review.setCommentList(reviewDao.selectCommentByNo(review.getNo()));
 		}
 		return reviews;

@@ -5,6 +5,7 @@ import java.util.List;
 import com.ssafy.ssafit.model.dto.Comment;
 import com.ssafy.ssafit.model.dto.Review;
 import com.ssafy.ssafit.model.dto.Routine;
+import com.ssafy.ssafit.model.dto.Video;
 
 public interface ReviewDao {
 	void insertReview(Review review);
@@ -16,6 +17,7 @@ public interface ReviewDao {
 	
 	List<Review> selectReviews();
 	List<Routine> selectRoutineByNo(int reviewNo);
+	List<Video> selectVideoByNo(int reviewNo);
 	
 	List<Comment> selectCommentByNo(int reviewNo);
 	void insertComment(Comment comment);
