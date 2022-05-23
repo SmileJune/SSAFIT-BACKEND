@@ -26,4 +26,9 @@
 		ON v.no = p.video_no
 	</select>
 	
+	<select id="selectPlanByUserId" resultType="plan">
+		SELECT user_id userId, video_no videoNo, date
+		FROM plan
+		WHERE user_id = #{userId}
+	</select>
 </mapper>

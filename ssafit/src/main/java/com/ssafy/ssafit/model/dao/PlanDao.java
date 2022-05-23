@@ -9,4 +9,5 @@ public interface PlanDao {
 	void deletePlan(Plan plan);
 	void insertPlan(Plan plan);
 	List<Video> selectPlan(Plan plan);
+	List<Plan> selectPlanByUserId(String userId); 
 }
