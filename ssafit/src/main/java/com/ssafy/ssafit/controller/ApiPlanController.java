@@ -3,6 +3,8 @@ package com.ssafy.ssafit.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -19,17 +21,22 @@ import com.ssafy.ssafit.util.JWTUtil;
 public class ApiPlanController {
 
 	@Autowired
-	private PlanServiceImpl planServiceImpl;
+	private PlanServiceImpl planService;
 
 	@PostMapping("plan/write")
 	public void writePlan(@RequestHeader("access-token") String token,@RequestBody Plan plan) {
 		plan.setUserId(JWTUtil.getUserIdByToken(token));
-		planServiceImpl.writePlan(plan);
+		planService.writePlan(plan);
 	}
 	
 	@PostMapping("plan")
 	public List<Video> getPlan(@RequestHeader("access-token") String token, @RequestBody Plan plan) {
 		plan.setUserId(JWTUtil.getUserIdByToken(token));
-		return planServiceImpl.getPlan(plan);
+		return planService.getPlan(plan);
+	}
+	
+	@GetMapping("plan/user")
+	public List<Plan> getPlanByUserId(@RequestHeader("access-token") String token){
+		return planService.getPlanByUserId(JWTUtil.getUserIdByToken(token));
 	}
 }

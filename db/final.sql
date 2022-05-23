@@ -48,7 +48,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`review` (
     REFERENCES `mydb`.`user` (`id`)
     ON DELETE CASCADE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 19
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -70,7 +69,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`comment` (
     REFERENCES `mydb`.`review` (`no`)
     ON DELETE CASCADE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 27
 DEFAULT CHARACTER SET = utf8;
 
 
