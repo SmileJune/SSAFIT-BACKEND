@@ -31,4 +31,9 @@ public class PlanServiceImpl implements PlanService{
 		return planDao.selectPlan(plan);
 	}
 
+	@Override
+	public List<Plan> getPlanByUserId(String userId) {
+		return planDao.selectPlanByUserId(userId);
+	}
+
 }

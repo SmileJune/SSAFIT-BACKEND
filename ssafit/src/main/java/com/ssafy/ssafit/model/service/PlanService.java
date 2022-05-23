@@ -8,4 +8,5 @@ import com.ssafy.ssafit.model.dto.Video;
 public interface PlanService {
 	void writePlan(Plan plan);
 	List<Video> getPlan(Plan plan);
+	List<Plan> getPlanByUserId(String userId);
 }

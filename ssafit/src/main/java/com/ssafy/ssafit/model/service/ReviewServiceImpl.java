@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ssafy.ssafit.model.dao.PlanDao;
 import com.ssafy.ssafit.model.dao.ReviewDao;
 import com.ssafy.ssafit.model.dto.Comment;
+import com.ssafy.ssafit.model.dto.Plan;
 import com.ssafy.ssafit.model.dto.Review;
 import com.ssafy.ssafit.model.dto.Routine;
 
