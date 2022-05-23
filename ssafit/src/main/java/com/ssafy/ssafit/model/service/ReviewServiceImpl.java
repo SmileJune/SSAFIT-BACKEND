@@ -17,8 +17,6 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Autowired
 	private ReviewDao reviewDao;
-	@Autowired
-	private PlanDao planDao;
 
 	@Override
 	public void createReview(Review review) {
@@ -29,10 +27,6 @@ public class ReviewServiceImpl implements ReviewService {
 			routine.setReviewNo(review.getNo());
 			reviewDao.insertRoutine(routine);
 		}
-		Plan plan = new Plan();
-		plan.setDate(review.getDate());
-		plan.setUserId(review.getUserId());
-		planDao.deletePlan(plan);
 	}
 
 	@Override
