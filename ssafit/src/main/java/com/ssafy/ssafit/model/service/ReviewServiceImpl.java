@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ssafy.ssafit.model.dao.PlanDao;
 import com.ssafy.ssafit.model.dao.ReviewDao;
 import com.ssafy.ssafit.model.dto.Comment;
+import com.ssafy.ssafit.model.dto.Plan;
 import com.ssafy.ssafit.model.dto.Review;
 import com.ssafy.ssafit.model.dto.Routine;
 
@@ -15,6 +17,8 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Autowired
 	private ReviewDao reviewDao;
+	@Autowired
+	private PlanDao planDao;
 
 	@Override
 	public void createReview(Review review) {
@@ -25,6 +29,10 @@ public class ReviewServiceImpl implements ReviewService {
 			routine.setReviewNo(review.getNo());
 			reviewDao.insertRoutine(routine);
 		}
+		Plan plan = new Plan();
+		plan.setDate(review.getDate());
+		plan.setUserId(review.getUserId());
+		planDao.deletePlan(plan);
 	}
 
 	@Override

@@ -5,7 +5,7 @@
 
 <mapper namespace="com.ssafy.ssafit.model.dao.PlanDao">
 
-	<delete id="deletePlan">
+	<delete id="deletePlan" parameterType="plan">
 		DELETE FROM plan
 		WHERE user_id = #{userId}
 		AND date = #{date}
