@@ -7,4 +7,5 @@ public interface UserDao {
 	User selectUser(User user);
 	void insertUser(User user);
 	void updateUser(User user);
+	void deleteUser(String id);
 }
