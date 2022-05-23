@@ -66,10 +66,7 @@ public class ApiUserController {
 	@PostMapping("user/identify")
 	public boolean identify(@RequestHeader("access-token") String token, @RequestBody User user) {
 		user.setId(JWTUtil.getUserIdByToken(token));
-		if(userService.isUser(user)) {
-			return true;
-		}
-		return false;
+		return userService.isUser(user);
 	}
 
 	@GetMapping("user/{id}")
@@ -86,6 +83,11 @@ public class ApiUserController {
 	public void updateUser(@RequestHeader("access-token") String token, @RequestBody User user) {
 		user.setId(JWTUtil.getUserIdByToken(token));
 		userService.updateUser(user);
+	}
+	
+	@DeleteMapping("user/delete")
+	public void deleteUser(@RequestHeader("access-token") String token) {
+		userService.deleteUser(JWTUtil.getUserIdByToken(token));
 	}
 
 	@GetMapping("follower/{id}")

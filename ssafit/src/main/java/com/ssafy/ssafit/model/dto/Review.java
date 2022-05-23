@@ -8,9 +8,9 @@ public class Review {
 	private String title;
 	private String content;
 	private String date;
-	private List<Routine> videoList;
+	private List<Video> videoList;
+	private List<Routine> routineList;
 	private List<Comment> commentList;
-	
 	public int getNo() {
 		return no;
 	}
@@ -41,11 +41,17 @@ public class Review {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public List<Routine> getVideoList() {
+	public List<Video> getVideoList() {
 		return videoList;
 	}
-	public void setVideoList(List<Routine> videoList) {
+	public void setVideoList(List<Video> videoList) {
 		this.videoList = videoList;
+	}
+	public List<Routine> getRoutineList() {
+		return routineList;
+	}
+	public void setRoutineList(List<Routine> routineList) {
+		this.routineList = routineList;
 	}
 	public List<Comment> getCommentList() {
 		return commentList;
@@ -56,8 +62,11 @@ public class Review {
 	@Override
 	public String toString() {
 		return "Review [no=" + no + ", userId=" + userId + ", title=" + title + ", content=" + content + ", date="
-				+ date + ", videoList=" + videoList + ", commentList=" + commentList + "]";
+				+ date + ", videoList=" + videoList + ", routineList=" + routineList + ", commentList=" + commentList
+				+ "]";
 	}
-
+	
+	
+	
 	
 }

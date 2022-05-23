@@ -49,14 +49,20 @@
 		LIMIT 5;
 	</select>
 	
-	<select id="selectRoutineByNo" resultType="video">
+	<select id="selectVideoByNo" resultType="video">
 		SELECT v.no, v.title, v.part_no partNo, v.channel_name channelName, v.url, v.spot_no spotNo 
 		FROM video v
 		INNER JOIN (
-					select video_no
-					from routine
-					where review_no = #{reviewNo}) r
+					SELECT video_no
+					FROM routine
+					WHERE review_no = #{reviewNo}) r
 		ON v.no = r.video_no
+	</select>
+	
+	<select id="selectRoutineByNo" resultType="routine">
+		SELECT review_no reviewNo, video_no videoNo, difficulty
+		FROM routine
+		WHERE review_no = #{reviewNo}
 	</select>
 	
 	<select id="selectCommentByNo" resultType="comment">
