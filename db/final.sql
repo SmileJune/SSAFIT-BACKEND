@@ -1,3 +1,195 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `mydb` ;
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`user`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`user` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`user` (
+  `id` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NULL DEFAULT NULL,
+  `nickname` VARCHAR(45) NULL DEFAULT NULL,
+  `introduce` VARCHAR(2000) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`review`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`review` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`review` (
+  `no` INT NOT NULL AUTO_INCREMENT,
+  `user_id` VARCHAR(45) NOT NULL,
+  `title` VARCHAR(100) NULL DEFAULT NULL,
+  `content` VARCHAR(2000) NULL DEFAULT NULL,
+  `date` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`no`, `user_id`),
+  INDEX `FK_review_user_idx` (`user_id` ASC) VISIBLE,
+  CONSTRAINT `FK_review_user`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `mydb`.`user` (`id`)
+    ON DELETE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 19
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`comment`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`comment` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`comment` (
+  `no` INT NOT NULL AUTO_INCREMENT,
+  `review_no` INT NOT NULL,
+  `user_id` VARCHAR(45) NOT NULL,
+  `comment` VARCHAR(100) NOT NULL,
+  `date` TIMESTAMP NOT NULL,
+  PRIMARY KEY (`no`),
+  INDEX `review_no` (`review_no` ASC) VISIBLE,
+  CONSTRAINT `comment_ibfk_1`
+    FOREIGN KEY (`review_no`)
+    REFERENCES `mydb`.`review` (`no`)
+    ON DELETE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 27
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`favorite`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`favorite` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`favorite` (
+  `user_id` VARCHAR(45) NOT NULL,
+  `review_no` INT NOT NULL,
+  PRIMARY KEY (`user_id`, `review_no`),
+  INDEX `FK_favorite_review_idx` (`review_no` ASC) VISIBLE,
+  CONSTRAINT `FK_favorite_review`
+    FOREIGN KEY (`review_no`)
+    REFERENCES `mydb`.`review` (`no`)
+    ON DELETE CASCADE,
+  CONSTRAINT `FK_favorite_user`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `mydb`.`user` (`id`)
+    ON DELETE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`follow`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`follow` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`follow` (
+  `from` VARCHAR(45) NOT NULL,
+  `to` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`from`, `to`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`part`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`part` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`part` (
+  `no` INT NULL DEFAULT NULL,
+  `part` VARCHAR(45) NULL DEFAULT NULL)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`plan`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`plan` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`plan` (
+  `user_id` VARCHAR(45) NOT NULL,
+  `video_no` INT NOT NULL,
+  `date` TIMESTAMP NOT NULL)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`video`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`video` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`video` (
+  `no` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(100) NULL DEFAULT NULL,
+  `part_no` INT NULL DEFAULT NULL,
+  `channel_name` VARCHAR(45) NULL DEFAULT NULL,
+  `url` VARCHAR(200) NULL DEFAULT NULL,
+  `spot_no` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`no`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`routine`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`routine` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`routine` (
+  `review_no` INT NOT NULL,
+  `video_no` INT NOT NULL,
+  `difficulty` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`review_no`, `video_no`),
+  INDEX `FK_routine_video_idx` (`video_no` ASC) VISIBLE,
+  CONSTRAINT `FK_routine_review`
+    FOREIGN KEY (`review_no`)
+    REFERENCES `mydb`.`review` (`no`)
+    ON DELETE CASCADE,
+  CONSTRAINT `FK_routine_video`
+    FOREIGN KEY (`video_no`)
+    REFERENCES `mydb`.`video` (`no`)
+    ON DELETE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`spot`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`spot` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`spot` (
+  `no` INT NULL DEFAULT NULL,
+  `spot` VARCHAR(45) NULL DEFAULT NULL)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
 
 insert into part
 values
@@ -6,19 +198,11 @@ values
 (3, '하체'),
 (4, '복부');
 
-select *
-from part;
-
 insert into spot
 values
 (1, '집'),
 (2, '헬스장'),
 (3, '실외');
-
-select *
-from spot;
-
-drop table video;
 
 insert into video (title, part_no, channel_name, url, spot_no)
 values
@@ -59,173 +243,11 @@ values
 ('운동 다시 시작하시게요? 헬스 초,중급 상체 루틴 가이드',2,'김강민_Kim Kang min','https://www.youtube.com/embed/7NPwSCjqka0/',2),
 ("어깨 운동만 '한' 남자",2,'김종국 GYM JONG KOOK','https://www.youtube.com/embed/8thMw9JyxBE/',2);
 
-
-select *
-from video;
-
 insert into user
 values
 ('dlfwns', 'dlfwns', 'smilejun', 'im iljun'),
 ('xodl', 'xodl', 'smileehoi', 'im ehoi'),
 ('wjdgus', 'wjdgus', 'smilehyun', 'im hyun');
-
-select *
-from user;
-
-SELECT no, title, part_no partNo, channel_name channelName, url, spot_no spotNo
-FROM video;
-        
-select *
-from review;
-
-select *
-from routine;
-
-delete from review
-where no = 4;
-
-delete from routine
-where video_no = 3;
-
-
-select v.no, v.title, v.part_no partNo, v.channel_name channelName, v.url, v.spot_no spotNo 
-from video v
-inner join (
-			select video_no
-			from routine
-			group by video_no
-			having avg(difficulty) BETWEEN (2-1) AND 2
-			) c
-on v.no = c.video_no
-where v.spot_no = 1
-AND v.part_no = 1;
-
-
-CREATE TABLE IF NOT EXISTS `mydb`.`plan` (
-  `user_id` VARCHAR(45) NOT NULL,
-  `video_no` INT NOT NULL,
-  `date` TIMESTAMP NOT NULL
-  )
-ENGINE = InnoDB;
-
-drop table comment;
-
-CREATE TABLE IF NOT EXISTS `mydb`.`comment` (
-  `no` INT NOT NULL auto_increment,
-  `review_no` INT NOT NULL,
-  `user_id` VARCHAR(45) NOT NULL,
-  `comment` VARCHAR(100) NOT NULL,
-  `date` TIMESTAMP NOT NULL,
-  primary key(no),
-  FOREIGN KEY(review_no)
-	REFERENCES review(no)
-    ON DELETE CASCADE
-  )
-ENGINE = InnoDB;
-
-select *
-from plan;
-
-select * from comment;
-
-insert into plan
-values
-('wjdgus',1,'2022-05-19'),
-('wjdgus',2,'2022-05-19'),
-('wjdgus',3,'2022-05-19'),
-('wjdgus',4,'2022-05-19'),
-('wjdgus',5,'2022-05-19');
-
-DELETE FROM plan
-WHERE user_id = 'dlfwns'
-AND date = '2022-05-19';
-
-
-SELECT v.no, v.title, v.part_no partNo, v.channel_name channelName, v.url, v.spot_no spotNo 
-FROM video v
-INNER JOIN (SELECT video_no
-			FROM plan
-			WHERE user_id='dlfwns'
-			AND date = '2022-05-20') p
-ON v.no = p.video_no;
-
-select *
-from user;
-
-select *
-from review;
-
-update review
-set title = 'title2', content = 'content2'
-where no = 1;
-
-select *
-from routine;
-
-update routine
-set difficulty = 3
-WHERE review_no = 1
-AND video_no = 2;
-
-select *
-from review
-order by date DESC;
-
-select v.no, v.title, v.part_no partNo, v.channel_name channelName, v.url, v.spot_no spotNo 
-from video v
-inner join (
-			select video_no
-			from routine
-			where review_no = 1) r
-on v.no = r.video_no;
-
-select *
-from follow;
-
-select *
-from comment;
-
-delete from review
-where no = 1;
-
-select no, review_no reviewNo, user_id userId, comment, date
-from comment
-where review_no=8;
-
-select *
-from comment;
-
-SELECT no, user_id userId, title, content, date
-FROM review
-WHERE user_id IN (select `to`
-					from follow
-					where `from` = 'dlfwns')
-ORDER BY date DESC
-LIMIT 5;
-
-
-select `to`
-from follow
-where `from` = 'dlfwns';
-
-select *
-from follow;
-
-delete from follow
-where `from` = 'dlfwns'
-AND `to` = 'dlfwns';
-
-select *
-from review;
-
-select *
-from routine;
-
-select *
-from video;
-
-select *
-from routine;
 
 insert into review
 values
@@ -270,6 +292,7 @@ values
 (1, 35, 5),
 (1, 36, 1);
 
-select *
-from review;
-
+select * from review;
+select * from user;
+select * from routine;
+select * from video;
