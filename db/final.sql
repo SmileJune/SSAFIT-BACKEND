@@ -183,6 +183,29 @@ CREATE TABLE IF NOT EXISTS `mydb`.`spot` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
+-- -----------------------------------------------------
+-- Table `mydb`.`together`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`together` ;
+
+drop table together;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`together` (
+  `no` INT NOT NULL AUTO_INCREMENT,
+  `user_id` VARCHAR(45) NOT NULL,
+  `lat` DOUBLE NOT NULL,
+  `lng` DOUBLE NOT NULL,
+  `content` VARCHAR(100) NOT NULL,
+  `date` TIMESTAMP NOT NULL,
+  PRIMARY KEY (`no`),
+  INDEX `FK_together_user_idx` (`user_id` ASC) VISIBLE,
+  CONSTRAINT `FK_together_user`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `mydb`.`user` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -290,7 +313,9 @@ values
 (1, 35, 5),
 (1, 36, 1);
 
-select * from review;
-select * from user;
-select * from routine;
-select * from video;
+insert into together (no, user_id, lat, lng, date)
+values
+(0, 'dlfwns', 36.3574142, 127.3093141, now());
+
+select *
+from together;
