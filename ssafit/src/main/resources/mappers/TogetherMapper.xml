@@ -6,8 +6,13 @@
 <mapper namespace="com.ssafy.ssafit.model.dao.TogetherDao">
 
 	<insert id="insertTogether" parameterType="together">
-		insert into together
-		values (0, #{userId}, #{lat}, #{lng}, #{content}, #{date})
+		INSERT INTO together
+		VALUES (0, #{userId}, #{lat}, #{lng}, #{content}, #{date})
 	</insert>
+	
+	<select id="selectTogether" resultType="together">
+		SELECT no, user_id userId, lat, lng, content, date
+		FROM together
+	</select>
 	
 </mapper>

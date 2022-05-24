@@ -1,5 +1,7 @@
 package com.ssafy.ssafit.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,12 @@ public class TogetherServiceImpl implements TogetherService {
 	@Override
 	public void createTogether(Together together) {
 		togetherDao.insertTogether(together);
+	}
+
+
+	@Override
+	public List<Together> readTogether() {
+		return togetherDao.selectTogether();
 	}
 
 }
