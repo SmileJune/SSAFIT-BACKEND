@@ -11,6 +11,7 @@ public class Review {
 	private List<Video> videoList;
 	private List<Routine> routineList;
 	private List<Comment> commentList;
+	
 	public int getNo() {
 		return no;
 	}

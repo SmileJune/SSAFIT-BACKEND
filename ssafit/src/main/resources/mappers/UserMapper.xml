@@ -32,5 +32,18 @@
 		DELETE FROM user
 		WHERE id = #{id}
 	</delete>
+	
+	<select id="getMyData" resultType="mydata">
+		SELECT avg(r.difficulty) difficulty, count(v.no) count, v.part_no partNo
+		FROM	(select t.review_no, t.video_no, difficulty
+				FROM routine t
+				INNER JOIN (select no
+							FROM review
+							WHERE user_id = #{id}) w
+				ON t.review_no = w.no) r
+		LEFT OUTER JOIN video v
+		ON r.video_no = v.no
+		GROUP BY v.part_no;
+	</select>
 
 </mapper>

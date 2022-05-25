@@ -32,10 +32,6 @@ public class Plan {
 	public void setVideoNo(int videoNo) {
 		this.videoNo = videoNo;
 	}
-	@Override
-	public String toString() {
-		return "Plan [userId=" + userId + ", videoList=" + videoList + ", date=" + date + ", videoNo=" + videoNo + "]";
-	}
 	
 	
 	

@@ -3,6 +3,7 @@ package com.ssafy.ssafit.model.service;
 import java.util.List;
 
 import com.ssafy.ssafit.model.dto.Follow;
+import com.ssafy.ssafit.model.dto.MyData;
 import com.ssafy.ssafit.model.dto.User;
 
 public interface UserService {
@@ -16,5 +17,7 @@ public interface UserService {
 	List<User> getFollowing(String id);
 	void insertFollow(Follow follow);
 	void deleteFollow(Follow follow);
+	
+	List<MyData> getMyData(String id);
 	
 }

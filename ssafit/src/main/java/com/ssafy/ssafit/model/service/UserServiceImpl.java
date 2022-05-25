@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ssafy.ssafit.model.dao.FollowDao;
 import com.ssafy.ssafit.model.dao.UserDao;
 import com.ssafy.ssafit.model.dto.Follow;
+import com.ssafy.ssafit.model.dto.MyData;
 import com.ssafy.ssafit.model.dto.User;
 import com.ssafy.ssafit.model.dto.Video;
 
@@ -66,6 +67,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteUser(String id) {
 		userDao.deleteUser(id);
+	}
+
+	@Override
+	public List<MyData> getMyData(String id) {
+		return userDao.getMyData(id);
 	}
 
 }

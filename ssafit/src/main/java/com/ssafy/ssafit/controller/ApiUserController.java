@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.ssafit.model.dto.Follow;
+import com.ssafy.ssafit.model.dto.MyData;
 import com.ssafy.ssafit.model.dto.User;
 import com.ssafy.ssafit.model.service.UserServiceImpl;
 import com.ssafy.ssafit.util.JWTUtil;
@@ -112,5 +113,10 @@ public class ApiUserController {
 		follow.setFrom(JWTUtil.getUserIdByToken(token));
 		follow.setTo(to);
 		userService.deleteFollow(follow);
+	}
+	
+	@GetMapping("user/mydata")
+	public List<MyData> getMyData(@RequestHeader("access-token") String token) {
+		return userService.getMyData(JWTUtil.getUserIdByToken(token));
 	}
 }

@@ -24,6 +24,7 @@ public class ApiTogetherController {
 	@PostMapping("together/create")
 	public void create(@RequestHeader("access-token") String token, @RequestBody Together together) {
 		together.setUserId(JWTUtil.getUserIdByToken(token));
+		System.out.println(together.getDate());
 		TogetherService.createTogether(together);
 	}
 	
